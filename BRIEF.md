@@ -1,6 +1,6 @@
 # Sr. Infrastructure / DevOps Engineer — Screening Exercise
 
-**Time-boxed: 2–3 hours, hard cap.**
+**Time-boxed: 3–4 hours, hard cap.**
 
 ## Purpose
 
@@ -15,24 +15,32 @@ commit history as closely as we read your code.
 
 ## Context
 
-Our API is **.NET 10** (C#, EF Core, PostgreSQL). The React UI talks to it through
-a small .NET **BFF** (`Bff`). CI runs on **GitHub Actions**. This repo gives you a
-minimal, runnable slice: the API project, the BFF project, a solution file, and
-unit tests. See [`README.md`](./README.md) for how it's laid out and how to build
-it.
+Our API is **.NET 10** (C#, EF Core, PostgreSQL). A **React 18 + Vite** UI talks to
+it through a small .NET **BFF** (`Bff`, a YARP reverse proxy). CI runs on **GitHub
+Actions**. This repo gives you a minimal, runnable slice: the API project, the BFF,
+the React UI, a solution file, and unit tests. The request chain is:
+
+```
+Browser → UI (React/Vite) → BFF (/api → YARP) → API (.NET 10) → PostgreSQL
+```
+
+See [`README.md`](./README.md) for how it's laid out and how to build each piece.
 
 ## The task
 
-### 1. Containerize (≈1h)
-- Write multi-stage Dockerfiles for the **.NET 10 API** and the **BFF** (non-root
-  user; restored/published layers cached sensibly).
-- Provide a `docker-compose.yml` that runs **API + BFF + PostgreSQL** with health
-  checks and a named network, and starts cleanly with one command.
+### 1. Containerize (≈1.5h)
+- Write multi-stage Dockerfiles for the **.NET 10 API**, the **BFF**, and the
+  **React UI** (non-root user; restored/published layers cached sensibly). For the
+  UI, build with Node and serve the static output — and route `/api` to the BFF.
+- Provide a `docker-compose.yml` that runs **API + BFF + UI + PostgreSQL** with
+  health checks and a named network, and starts cleanly with one command. Opening
+  the UI in a browser should list the seeded widgets (UI → BFF → API → Postgres).
 
-### 2. CI pipeline (≈1–1.5h)
+### 2. CI pipeline (≈1.5h)
 - A GitHub Actions workflow that, on push/PR: restores, builds, and runs the
-  **unit tests** for the .NET solution.
-- Builds the API image tagged with **`branch + short SHA`**.
+  **unit tests** for the .NET solution, and builds the **React UI**.
+- Builds the images tagged with **`branch + short SHA`** (the API at minimum;
+  the UI/BFF too is a plus).
 - Generates an **SBOM** and runs a vulnerability scan (**Trivy or Grype**) that
   **fails the job on high/critical**.
 - Uploads test results, the SBOM, and the scan report as artifacts.

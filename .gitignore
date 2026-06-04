@@ -3,6 +3,11 @@ bin/
 obj/
 *.user
 
+# Node / frontend
+node_modules/
+dist/
+*.tsbuildinfo
+
 # Env / secrets — must never be committed
 .env
 *.env
