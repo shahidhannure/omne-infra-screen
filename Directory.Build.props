@@ -1,0 +1,15 @@
+<Project>
+  <!--
+    Mirrors the real Omne backend conventions (trimmed for the screening slice).
+    .NET 10, nullable + implicit usings on, Linux container target.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>preview</LangVersion>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+</Project>
