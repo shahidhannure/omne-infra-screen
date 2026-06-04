@@ -62,9 +62,20 @@ and full integration tests are **not** expected here. Don't spend time on them.
 | **Strong** | One-command bring-up that actually works; health checks gate dependencies. Multi-stage, non-root images; small final image; layer caching considered. Scan gate genuinely fails on a high/critical finding (not just runs). Honest, concise README with real trade-offs. |
 | **Weak** | Compose that needs manual steps or fails on a fresh clone. Single-stage / root images; secrets baked into the image. Scan present but non-gating, or artifacts not published. No README, or one that overstates completeness. |
 
-## Deliverable
+## How to submit
 
-Submit a **git repository or a PR** against this slice. Note your actual time spent
-— we respect the cap and read for judgment, not volume.
+Submit your work as a **pull request from your own fork** of this repository:
+
+1. **Fork** this repo to your own GitHub account.
+2. Do your work on a branch in your fork, committing as you go (we like seeing the
+   history — small, real commits are a plus).
+3. Open a **pull request back to this repository** when you're done.
+4. In the PR description, include a short note on **time spent** and **what you'd do
+   next** if you stopped at the cap.
+
+Please **don't email a zip** — we only review fork + PR submissions, so we can see
+your commit history and run your branch directly.
+
+Note your actual time spent — we respect the cap and read for judgment, not volume.
 
 Good luck — we're excited to see how you think.

@@ -90,3 +90,7 @@ Helm, observability dashboards, Vercel, Keycloak/OIDC, secret stores, full
 integration tests. Don't spend time on them.
 
 Please respect the ~4 hour cap and tell us what you'd do next where you stopped.
+
+**Submitting:** fork this repo, work on a branch, and open a **pull request** back to
+it (include time spent + next steps in the PR description). We don't accept zip
+files — see [`BRIEF.md`](./BRIEF.md) for the full submission steps.
