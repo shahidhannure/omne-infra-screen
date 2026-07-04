@@ -2,9 +2,9 @@ services:
   postgres:
     image: postgres:16-alpine
     environment:
-      POSTGRES_DB: omne_screen
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - pgdata:/var/lib/postgresql/data
     networks:
@@ -20,7 +20,7 @@ services:
       context: .
       dockerfile: src/Api/Dockerfile
     environment:
-      ConnectionStrings__OmneScreen: "Host=postgres;Port=5432;Database=omne_screen;Username=postgres;Password=postgres"
+      ConnectionStrings__OmneScreen: "Host=postgres;Port=5432;Database=${POSTGRES_DB};Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD}"
       ASPNETCORE_ENVIRONMENT: Production
     networks:
       - omne-net
